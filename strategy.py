@@ -37,7 +37,7 @@ class Automatic_BaseStrategy(BaseStrategy):
         self.chosen_one = random.randint(0, len(self.envelopes))
 
     def perform_strategy(self, counter):
-        """ chose the envelope numbered: self.chosen_one """
+        """ chooses the envelope numbered: self.chosen_one """
         return counter == self.chosen_one
 
     def display(self):
@@ -48,13 +48,12 @@ class N_max_strategy(BaseStrategy):
 
     def __init__(self, envelopes):
         super().__init__(envelopes)
-        self.N = 1
+        self.N = 3
         self.maxes_counter = 0
         self.curr_max = -inf
 
-
     def perform_strategy(self, counter):
-        """ chose the envelope numbered: self.chosen_one """
+        """ chooses the Nth maximum """
         if counter == 0:  # reset. allows for multiple runs with the same instance
             self.maxes_counter = 0
             self.curr_max = -inf
@@ -66,3 +65,21 @@ class N_max_strategy(BaseStrategy):
 
     def display(self):
         return "N max Strategy"
+
+
+class More_than_N_percent_group_strategy(BaseStrategy):
+
+    def __init__(self, envelopes, percent=0.25):
+        super().__init__(envelopes)
+        self.percent = percent
+        self.curr_max = -inf
+
+    def perform_strategy(self, counter):
+        """ chooses the first envelope with more money than any of the first self.percent percent """
+        if counter < self.percent * len(self.envelopes):  # in the first self.percent percent
+            self.curr_max = max(self.curr_max, self.envelopes[counter].money)
+            return
+        return self.envelopes[counter].money > self.curr_max
+
+    def display(self):
+        return "More than N percent group strategy"
