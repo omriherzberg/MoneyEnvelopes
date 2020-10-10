@@ -1,3 +1,5 @@
+import random
+
 class BaseStrategy:
 
     def __init__(self, envelopes):
@@ -24,3 +26,17 @@ class BaseStrategy:
 
     def display(self):
         return "BASE STRA-TE-GY"
+
+
+class Automatic_BaseStrategy(BaseStrategy):
+
+    def __init__(self, envelopes):
+        super().__init__(envelopes)
+        self.chosen_one = random.randint(0, len(self.envelopes))
+
+    def perform_strategy(self, counter):
+        """ chose the envelope numbered: self.chosen_one """
+        return counter == self.chosen_one
+
+    def display(self):
+        return "Automatic Strategy"
