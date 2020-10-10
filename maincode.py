@@ -1,5 +1,6 @@
-from Envelope import Envelope
-# from strategy import BaseStrategy, Automatic_BaseStrategy, N_max_strategy, More_then_N_percent_group_strategy
+from envelope import Envelope
+from strategy import BaseStrategy
+# Automatic_BaseStrategy, N_max_strategy, More_then_N_percent_group_strategy
 
 
 def cls(): print("\n" * 20)
@@ -10,7 +11,7 @@ for i in range(100):
     envelopes.append(Envelope())
 strategies = []
 
-# strategies.append(BaseStrategy(envelopes)) NOT IMPLEMENTED
+strategies.append(BaseStrategy(envelopes))
 # user select manually envelopes
 
 # strategies.append(Automatic_BaseStrategy(envelopes)) NOT IMPLEMENTED
