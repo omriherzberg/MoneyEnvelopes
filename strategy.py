@@ -1,4 +1,6 @@
 import random
+from math import inf
+
 
 class BaseStrategy:
 
@@ -40,3 +42,27 @@ class Automatic_BaseStrategy(BaseStrategy):
 
     def display(self):
         return "Automatic Strategy"
+
+
+class N_max_strategy(BaseStrategy):
+
+    def __init__(self, envelopes):
+        super().__init__(envelopes)
+        self.N = 1
+        self.maxes_counter = 0
+        self.curr_max = -inf
+
+
+    def perform_strategy(self, counter):
+        """ chose the envelope numbered: self.chosen_one """
+        if counter == 0:  # reset. allows for multiple runs with the same instance
+            self.maxes_counter = 0
+            self.curr_max = -inf
+        m = self.envelopes[counter].money
+        if m >= self.curr_max:
+            self.maxes_counter += 1
+            self.curr_max = m
+        return self.maxes_counter == self.N
+
+    def display(self):
+        return "N max Strategy"

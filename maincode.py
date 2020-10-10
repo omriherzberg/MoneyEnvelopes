@@ -1,5 +1,5 @@
 from envelope import Envelope
-from strategy import BaseStrategy, Automatic_BaseStrategy  # ,N_max_strategy, More_then_N_percent_group_strategy
+from strategy import BaseStrategy, Automatic_BaseStrategy, N_max_strategy  #, More_then_N_percent_group_strategy
 
 
 def cls(): print("\n" * 20)
@@ -16,7 +16,7 @@ strategies.append(BaseStrategy(envelopes))
 strategies.append(Automatic_BaseStrategy(envelopes))
 # random selection of envelop
 
-# strategies.append(N_max_strategy(envelopes))  NOT IMPLEMENTED
+strategies.append(N_max_strategy(envelopes))
 # return envelope after N max values (defualt N=3)
 
 # strategies.append(More_then_N_percent_group_strategy(envelopes, 0.25))  # return envelope with more money that in the
